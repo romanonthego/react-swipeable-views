@@ -649,12 +649,17 @@ class SwipeableViews extends PureComponent {
       onDecorate
     } = this.props
 
+    const {
+      indexCurrent,
+      indexLatest,
+    } = this.state
+
     let st = style
 
     if (onDecorate) {
       st = {
         ...style,
-        ...onDecorate(this.state.index)
+        ...onDecorate(indexCurrent, indexLatest)
       }
     }
 
