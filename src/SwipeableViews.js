@@ -619,7 +619,7 @@ class SwipeableViews extends PureComponent {
 
     const {
       translate
-    } = interpolatedStyl
+    } = interpolatedStyle
 
     this.indexAnimation = translate
 
