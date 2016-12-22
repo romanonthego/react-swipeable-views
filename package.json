@@ -2,22 +2,12 @@
   "name": "react-swipeable-views-es6",
   "version": "0.7.11",
   "description": "A React component for swipeable views",
-  "main": "lib/index.js",
+  "main": "src/index.js",
   "scripts": {
-    "lint": "eslint . && echo \"eslint: no lint errors\"",
-    "test": "npm run lint && npm run test:unit && npm run flow",
-    "test:unit": "NODE_ENV=release babel-node test/unit.js",
-    "test:unit:watch": "NODE_ENV=release babel-node test/watch.js",
-    "build": "rm -rf lib && mkdir lib && NODE_ENV=release babel src --out-dir lib --ignore spec.js",
-    "docs:browser:development": "cd docs && NODE_ENV=docs-browser-development babel-node webpack.js --dev",
-    "docs:browser:production": "cd docs && NODE_ENV=docs-browser-production babel-node webpack.js",
-    "docs:native:development": "NODE_ENV=docs-native-development node node_modules/react-native/local-cli/cli.js start --reset-cache --verbose",
-    "prepublish": "npm run build && pkgfiles",
-    "flow": "flow"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/oliviertassinari/react-swipeable-views.git"
+    "url": "https://github.com/romanonthego/react-swipeable-views-es6.git"
   },
   "keywords": [
     "react",
