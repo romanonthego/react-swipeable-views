@@ -168,6 +168,7 @@ class SwipeableViews extends PureComponent {
      * @param {integer} indexLatest This is the oldest index of the slide.
      */
     onChangeIndex: PropTypes.func,
+    onDecorate: PropTypes.func,
     /**
      * This is callback prop. It's called by the
      * component when the slide switching.
@@ -635,6 +636,41 @@ class SwipeableViews extends PureComponent {
     )
   }
 
+
+  decorateChild(child, options = {}) {
+    const {
+      ref,
+      style,
+      className,
+      ariaHidden,
+    } = options
+
+    const {
+      onDecorate
+    } = this.props
+
+    let st = style
+
+    if (onDecorate) {
+      st = {
+        ...style,
+        ...onDecorate(this.state.index)
+      }
+    }
+
+    return (
+        <div
+          ref={ref}
+          style={st}
+          className={className}
+          aria-hidden={ariaHidden}
+          role="option"
+        >
+          {child}
+        </div>
+      )
+  }
+
   render() {
     const {
       animateHeight,
@@ -726,17 +762,19 @@ class SwipeableViews extends PureComponent {
         }
       }
 
-      return (
-        <div
-          ref={ref}
-          style={slideStyleObj}
-          className={slideClassName}
-          aria-hidden={hidden}
-          role="option"
-        >
-          {child}
-        </div>
-      )
+      return this.decorateChild(child, {ref, style: slideStyleObj, className: slideClassName, ariaHidden: hidden})
+
+      // return (
+      //   <div
+      //     ref={ref}
+      //     style={slideStyleObj}
+      //     className={slideClassName}
+      //     aria-hidden={hidden}
+      //     role="option"
+      //   >
+      //     {child}
+      //   </div>
+      // )
     })
 
     return (
