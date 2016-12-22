@@ -641,11 +641,11 @@ class SwipeableViews extends PureComponent {
         className={containerClassName}
         ref={(node) => { this.container = node }}
       >
-        {childrenToRender.map(child => {
+        {childrenToRender.map(child, i => {
           return cloneElement(child, {
             style: {
               ...(child.props.style ? child.props.style : {}),
-              ...(onDecorate ? onDecorate(translate, indexCurrent, indexLatest) : {}),
+              ...(onDecorate ? onDecorate(translate, i, indexCurrent, indexLatest) : {}),
             }
           })
         })}
