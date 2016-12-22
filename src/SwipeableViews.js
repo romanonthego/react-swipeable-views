@@ -659,7 +659,7 @@ class SwipeableViews extends PureComponent {
     if (onDecorate) {
       st = {
         ...style,
-        ...onDecorate(indexCurrent, indexLatest)
+        ...onDecorate(this.indexAnimation, indexCurrent, indexLatest)
       }
     }
 
