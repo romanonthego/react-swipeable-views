@@ -609,11 +609,21 @@ class SwipeableViews extends PureComponent {
       axis,
       containerStyle,
       containerClassName,
+      onDecorate,
     } = this.props
 
-    this.indexAnimation = interpolatedStyle.translate
+    const {
+      indexCurrent,
+      indexLatest,
+    } = this.state
 
-    const transform = axisProperties.transform[axis](interpolatedStyle.translate)
+    const {
+      translate
+    } = interpolatedStyl
+
+    this.indexAnimation = translate
+
+    const transform = axisProperties.transform[axis](translate)
     const styleNew = {
       WebkitTransform: transform,
       transform,
@@ -631,7 +641,14 @@ class SwipeableViews extends PureComponent {
         className={containerClassName}
         ref={(node) => { this.container = node }}
       >
-        {childrenToRender}
+        {childrenToRender.map(child => {
+          cloneElement(child, {
+            style: {
+              ...(child.props.style ? child.props.style : {}),
+              ...(onDecorate ? onDecorate(translate, indexCurrent, indexLatest) : {}),
+            }
+          })
+        })}
       </div>
     )
   }
@@ -645,28 +662,10 @@ class SwipeableViews extends PureComponent {
       ariaHidden,
     } = options
 
-    const {
-      onDecorate
-    } = this.props
-
-    const {
-      indexCurrent,
-      indexLatest,
-    } = this.state
-
-    let st = style
-
-    if (onDecorate) {
-      st = {
-        ...style,
-        ...onDecorate(this.indexAnimation, indexCurrent, indexLatest)
-      }
-    }
-
     return (
         <div
           ref={ref}
-          style={st}
+          style={style}
           className={className}
           aria-hidden={ariaHidden}
           role="option"
