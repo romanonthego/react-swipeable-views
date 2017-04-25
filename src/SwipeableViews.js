@@ -1,6 +1,6 @@
 /* eslint-disable */
-
-import React, {PureComponent, PropTypes, Children, cloneElement} from 'react'
+import PropTypes from 'prop-types'
+import React, {PureComponent, Children, cloneElement} from 'react'
 import {Motion, spring} from 'react-motion'
 import warning from 'warning'
 import {UNCERTAINTY_THRESHOLD} from './constant'

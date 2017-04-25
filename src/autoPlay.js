@@ -1,6 +1,6 @@
 // @flow weak
-
-import React, { Component, PropTypes, Children } from 'react';
+import PropTypes from 'prop-types'
+import React, { Component, Children } from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import mod from './utils/mod';
 
